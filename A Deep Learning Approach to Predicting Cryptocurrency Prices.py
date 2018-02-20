@@ -1,4 +1,5 @@
-
+import matplotlib
+matplotlib.use('Agg')
 # coding: utf-8
 
 #  # A Deep Learning Approach to Predicting Cryptocurrency Prices (Ethereum, Bitcoin, etc.)
@@ -592,7 +593,7 @@ def calculate_statistics(true_pos, false_pos, true_neg, false_neg, y_predict, Y_
 # In[251]:
 
 
-X_train, Y_train, X_test, Y_test, Y_daybefore, unnormalized_bases, window_size = load_data("./minutely.csv", 50)
+X_train, Y_train, X_test, Y_test, Y_daybefore, unnormalized_bases, window_size = load_data("./gtobtc.csv", 50)
 print (X_train.shape)
 print (Y_train.shape)
 print (X_test.shape)
@@ -627,7 +628,7 @@ print ("Training time", training_time, "seconds")
 # In[ ]:
 
 
-model = keras.models.load_model('./trained_model1517358383.412214')
+#model = keras.models.load_model('./trained_model1517358383.412214')
 
 
 # In[270]:
@@ -636,7 +637,9 @@ model = keras.models.load_model('./trained_model1517358383.412214')
 y_predict, real_y_test, real_y_predict, fig1 = test_model(model, X_test, Y_test, unnormalized_bases)
 
 #Show the plot
-plt.show(fig1)
+
+#plt.show(fig1)
+fig1.savefig('fig1.png', dpi=100)
 
 
 # ## Plotting Percent Change
@@ -647,7 +650,9 @@ plt.show(fig1)
 Y_daybefore, Y_test, delta_predict, delta_real, fig2 = price_change(Y_daybefore, Y_test, y_predict)
 
 #Show the plot
-plt.show(fig2)
+
+#plt.show(fig2)
+fig2.savefig('fig2.png', dpi=100)
 
 
 # ## Getting Binary Version of Percent Change
